@@ -1,0 +1,18 @@
+package FreshCut;
+
+
+public class WeightTester
+{
+    public static void main (String [] args)
+    {
+        int[] values = {98,99,100, 101, 102, 100, 104, 105, 105, 106, 105, 103, 104, 103, 105, 106,
+                107, 106, 105, 105, 104, 104, 103, 102, 102, 101, 100, 102};
+
+        Weight june = new Weight( values );
+
+        june.print();
+
+        int avg = june.average();
+        System.out.println("Average " + avg);
+    }
+}

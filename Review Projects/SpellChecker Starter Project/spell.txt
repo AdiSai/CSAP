@@ -1,0 +1,172 @@
+CO320 Assignment 2: A Spellchecker CO320 Assignment 2: A Spellchecker 
+Goal 
+
+The goal of this assignment is to implement a class that serves as a spellchecker for a text application 
+(for example, a word processor, or something similar). 
+
+This time, you do no get an existing project. You need to create a project and required class(es) 
+yourself. However, your project and the class(es) must strictly fulfill the specification below. 
+
+The “spelling” project 
+
+The project you create must be called “spelling”. Do not call it anything else. 
+
+The SpellChecker class 
+
+You must create a class called SpellChecker. It must have exactly this name; this is important. 
+
+I will give you a dictionary file that lists the words in the English language (or at least an arbitrary 
+subset) and the source code for another class called DictReader. This class can read in the dictionary 
+and provide it as an ArrayList of Strings. More about that below. 
+
+Base tasks (level 1) 
+
+Your SpellChecker can then obtain an English dictionary from a DictReader. The SpellChecker 
+must have the following public methods (words are case sensitive, where not specified otherwise): 
+
+public int numberOfWords() 
+
+This method returns the number of words in the dictionary. 
+
+public boolean isKnownWord(String word) 
+
+This method returns true, if (and only if) the given word is found in the dictionary. 
+
+public boolean allKnown(ArrayList<String> words) 
+
+This method returns true if (and only if) all words in the given list are found in the dictionary. 
+
+
+Base tasks (level 2) 
+
+public ArrayList<String> wordsStartingWith(String prefix) 
+
+This method returns a list of all words from the dictionary that start with the given prefix. 
+
+public ArrayList<String> wordsContaining(String text) 
+
+This method returns a list of all words from the dictionary that include the given substring. 
+
+Make sure that your wordsStartingWith and wordsContaining methods are case-insensitive. 
+That means, for instance, that looking up words starting with “gilb” should find “Gilbert”. 
+
+University of Kent Copyright © M. Kölling 
+
+
+1 
+
+
+CO320 
+
+Assignment 2 
+
+Base tasks (level 3) 
+
+public void insert(String newWord) 
+
+Insert the given word into the dictionary. The word should only be inserted if it does not already 
+exist in the dictionary. If it does, the method does nothing. Make sure that the alphabetic 
+order of the dictionary is maintained. 
+
+public boolean remove(String newWord) 
+
+Remove the given word from the dictionary. If the word was successfully removed, return 
+true. If not (for example it did not exist) return false. 
+
+public void save() 
+
+Save the dictionary to disk. This is not meant to be hard – there is a method in the DictReader 
+class that you can use. It is listed here only because it goes together with insert and 
+remove. 
+
+Challenge tasks (Do these only if you have time left over) 
+
+public boolean isPalindrome(String word) 
+
+Return true if (and only if) the given word is a palindrome. A palindrome is a word that reads 
+the same when read backwards. Palindromes are treated as case-insensitive. For example 
+“racecar” is a palindrome. For a word to be a palindrome, it also must exist in the dictionary. 
+
+public ArrayList<String> anagrams(String word) 
+
+Return a list of all words that are anagrams of the given word. Anagrams are treated as case-
+insensitive. 
+
+public ArrayList<String> difference(ArrayList<String> dictionary) 
+
+Given another dictionary as a parameter, compare the given dictionary to this one. Return a 
+list of words that are in one of the dictionaries, but not in the other. 
+
+The really hard challenge task (do this – really – only if you have nothing else to do) 
+
+public int distance(String word1, String word2) 
+
+Compute the distance between two strings. The distance function is used in dictionaries to 
+suggest spelling corrections. Usually, when suggesting corrections, the application suggests 
+the words with the smallest distance to the word found. 
+
+To compute the distance, we use the Levenshtein Distance. You can find definitions (and some 
+tests) here: 
+
+http://www.cut-the-knot.org/do_you_know/Strings.html 
+
+http://www-igm.univ-mlv.fr/~lecroq/seqcomp/node2.html 
+
+University of Kent Copyright © M. Kölling 
+
+
+
+CO320 
+
+Assignment 2 
+
+How to approach the project 
+
+I have divided the base tasks into three levels. This is intended to give you an order of attack: I 
+suggest that you complete the methods in each level before you move on to the methods in the 
+next level. I would rather see submissions that implement some methods well, rather than submissions 
+that do all methods badly. 
+
+Support material 
+
+On swallow (or raptor) you will find the directory courses/co320/assignment2/. In it you will 
+find the following: 
+
+• 
+A file called words.txt. This is a text file that lists the dictionary words (one word per line). 
+Place a copy of this file into your project folder for the spell checker to use. 
+• 
+A Java file called DictReader.java. This is the source code for a class that you may use in 
+your project. It reads the dictionary file from disk and provides it as an ArrayList<String>. 
+Add this class to your project by using the Edit–Add Class From File function in BlueJ. 
+Submission and deadline 
+
+You must submit your complete BlueJ project electronically. Submission will again be by copying 
+your project into a submission folder on raptor or swallow.You will find your personal submission 
+folder in /proj/co320/assignment2/. 
+
+You must submit by Friday of week 6 (6. November 2009) before 5pm. Late submissions will not 
+be accepted. 
+
+Marking 
+
+The submission will be marked for 
+
+• 
+completeness (have all required methods been implemented?) 
+• 
+correctness (does everything work as specified?) 
+• 
+commenting (is everything commented as it should?) 
+• 
+style (is the code nicely laid out and formatted, are the variable names chosen well?) 
+• 
+difficulty (are any of the challenge tasks included?) 
+A submission with a perfect implementation of the base tasks will receive a good mark. To get a 
+very good mark, you need to implement challenge task as well. Do the base tasks first – they attract 
+more marks than the challenge tasks. 
+
+University of Kent Copyright © M. Kölling 
+
+
+
