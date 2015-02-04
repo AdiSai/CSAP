@@ -95,6 +95,10 @@ public class SpellChecker
         for (int i = 0; i < words.size(); i++)
         {
             word = word.toLowerCase();
+            if (word.compareTo(words.get(i)) == 0)
+            {
+                break;
+            }
             if (word.compareTo(words.get(i)) > 0)
             {
                 words.add(i, word);
@@ -119,12 +123,18 @@ public class SpellChecker
     public ArrayList<String> wordsContaining(String part)
     {
         ArrayList<String> datWords = new ArrayList<String>();
+        int x = 0;
         for (int i = 0; i < words.size(); i++)
         {
             if (words.get(i).length() >= part.length() && words.get(i).substring(0, part.length()).equals(part))
             {
                 datWords.add(words.get(i));
             }
+            if (words.get(i).length() >= part.length() && words.get(i).substring(x, part.length()).equals(part))
+            {
+                datWords.add(words.get(i));
+            }
+            x++;
         }
         return datWords;
     }
@@ -134,9 +144,9 @@ public class SpellChecker
         for (int i = 0; i < words.size(); i++)
         {
             word = word.toLowerCase();
-            if (word.compareTo(words.get(i)) < 0)
+            if (word.equals(words.get(i)))
             {
-                words.remove(words.get(i + 1));
+                words.remove(words.get(i));
                 return true;
             }
         }
