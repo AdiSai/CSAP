@@ -1,1 +1,1 @@
-Dictionary Project
+Dictionary Spell Checker Project
