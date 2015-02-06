@@ -45,14 +45,14 @@ public class SpellChecker
 
     public boolean allKnown(ArrayList<String> list)
     {
-        for (int i = 0; i < words.size(); i++)
+        for (int i = 0; i < list.size(); i++)
         {
-            if (isKnownWord(list.get(i)) == true)
+            if ( !(isKnownWord( list.get(i) ) ))
             {
-                return true;
-            } 
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
     public boolean isPalindrome(String word)
@@ -80,11 +80,19 @@ public class SpellChecker
     {
         ArrayList<String> wordsThatMatch = new ArrayList<String>();
         word = word.toLowerCase();
+        int size = word.length();
+        int e = 0;
+        int f = 0;
         for (int i = 0; i < words.size(); i++)
         {
-            if (word == words.get(i))
+            for (int j = 0; j < size; j++)
             {
-                wordsThatMatch.add(word);
+                if (word.equals(words.get(i).substring(e, f)))
+                {
+                    wordsThatMatch.add(word);
+                }
+                e++;
+                f++;
             }
         }
         return wordsThatMatch;
@@ -110,6 +118,7 @@ public class SpellChecker
     public ArrayList<String> wordsStartingWith(String pre)
     {
         ArrayList<String> datWords = new ArrayList<String>();
+        pre = pre.toUpperCase();
         for (int i = 0; i < words.size(); i++)
         {
             if (words.get(i).length() >= pre.length() && words.get(i).substring(0, pre.length()).equals(pre))
@@ -126,15 +135,26 @@ public class SpellChecker
         int x = 0;
         for (int i = 0; i < words.size(); i++)
         {
-            if (words.get(i).length() >= part.length() && words.get(i).substring(0, part.length()).equals(part))
+            x = 0;
+            if (x > part.length())
             {
-                datWords.add(words.get(i));
+                break;
             }
-            if (words.get(i).length() >= part.length() && words.get(i).substring(x, part.length()).equals(part))
+            else
             {
-                datWords.add(words.get(i));
+                if (words.get(i).length() >= part.length() && words.get(i).substring(0, part.length()).equals(part))
+                {
+                    datWords.add(words.get(i));
+                }
+                while (i < x)
+                {
+                    if (words.get(i).length() >= part.length() && words.get(i).substring(x, part.length()).equals(part))
+                    {
+                        datWords.add(words.get(i));
+                    }
+                }
+                x++;
             }
-            x++;
         }
         return datWords;
     }
@@ -167,4 +187,3 @@ public class SpellChecker
     }
 
 }
-                                
