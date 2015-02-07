@@ -94,34 +94,27 @@ public class SpellChecker
                 if (isPalindrome(words.get(i)) && isPalindrome(word))
                 {                  
                     wordsThatMatch.add(words.get(i));
-                    //System.out.println("is palindrome.");
                 }
                 for (int j = 0; j < size; j++)
                 {
-                    //System.out.println(words.get(i));
-                    //System.out.println(word.substring(j, j + 1));
-                    //System.out.println(words.get(i).indexOf(word.substring(j, j + 1)));
                     if (words.get(i).indexOf(word.substring(j, j + 1)) == -1)
                     {
-                        //System.out.println("substring too large.");
                         break;
                     }
                     else if (j == (size - 1))
                     {
                         wordsThatMatch.add(words.get(i));
-                        System.out.println(words.get(i) + " to be added." + " The count is now " + count + ".");
                         count++;
+                        System.out.println("The word " + words.get(i) + " will be added." + " The number of words found so far is now " + count + ".");
                     }
                 }
             }
             else
             {
-                //System.out.println("size has gotten too large.");
-                //size = 1;
-                break;
+                continue;
             }
         }
-        System.out.println("done.");
+        System.out.println();
         return wordsThatMatch;
     }
 
@@ -203,13 +196,15 @@ public class SpellChecker
             }
             for (int j = 0; j < size; j++)
             {
-                if (words.get(i).indexOf(part.substring(j, j + 1)) == -1)
+                if (words.get(i).indexOf(part.substring(j, size)) == -1)
                 {
                     break;
                 }
                 else if (j == (size - 1))
                 {
                     wordsThatMatch.add(words.get(i));
+                    count++;
+                    System.out.println("The word " + words.get(i) + " will be added." + " The number of words found so far is now " + count + ".");
                 }
             }
         }
