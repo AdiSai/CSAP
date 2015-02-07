@@ -79,20 +79,36 @@ public class SpellChecker
     public ArrayList<String> anagrams(String word)
     {
         ArrayList<String> wordsThatMatch = new ArrayList<String>();
-        word = word.toLowerCase();
+        //word = word.toLowerCase();
         int size = word.length();
-        int e = 0;
+        int x  = 0;
+        int e = 0;  
         int f = 0;
         for (int i = 0; i < words.size(); i++)
         {
-            for (int j = 0; j < size; j++)
+            e = 0;
+            f = 0;
+            x = 0;
+            if (x > size)
             {
-                if (word.equals(words.get(i).substring(e, f)))
+                break;
+            }
+            else
+            {
+                if (isPalindrome(word))
                 {
-                    wordsThatMatch.add(word);
+                    wordsThatMatch.add(words.get(i));
+                }
+                while (i < x)
+                {
+                    if (word.equals(words.get(i).substring(e, f)))
+                    {
+                        wordsThatMatch.add(words.get(i));
+                    }
                 }
                 e++;
                 f++;
+                x++;
             }
         }
         return wordsThatMatch;
