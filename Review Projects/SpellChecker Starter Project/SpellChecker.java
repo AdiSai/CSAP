@@ -79,38 +79,49 @@ public class SpellChecker
     public ArrayList<String> anagrams(String word)
     {
         ArrayList<String> wordsThatMatch = new ArrayList<String>();
-        //word = word.toLowerCase();
+        word = word.toLowerCase();
+        if (!(isKnownWord(word)))
+        {
+            //System.out.println("no words.");
+            return wordsThatMatch; //0 items in the ArrayList.
+        }
         int size = word.length();
-        int x  = 0;
-        int e = 0;  
-        int f = 0;
+        int count  = 0;
         for (int i = 0; i < words.size(); i++)
         {
-            e = 0;
-            f = 0;
-            x = 0;
-            if (x > size)
+            if (words.get(i).length() == size)
             {
-                break;
+                if (isPalindrome(words.get(i)) && isPalindrome(word))
+                {                  
+                    wordsThatMatch.add(words.get(i));
+                    //System.out.println("is palindrome.");
+                }
+                for (int j = 0; j < size; j++)
+                {
+                    //System.out.println(words.get(i));
+                    //System.out.println(word.substring(j, j + 1));
+                    //System.out.println(words.get(i).indexOf(word.substring(j, j + 1)));
+                    if (words.get(i).indexOf(word.substring(j, j + 1)) == -1)
+                    {
+                        //System.out.println("substring too large.");
+                        break;
+                    }
+                    else if (j == (size - 1))
+                    {
+                        wordsThatMatch.add(words.get(i));
+                        System.out.println(words.get(i) + " to be added." + " The count is now " + count + ".");
+                        count++;
+                    }
+                }
             }
             else
             {
-                if (isPalindrome(word))
-                {
-                    wordsThatMatch.add(words.get(i));
-                }
-                while (i < x)
-                {
-                    if (word.equals(words.get(i).substring(e, f)))
-                    {
-                        wordsThatMatch.add(words.get(i));
-                    }
-                }
-                e++;
-                f++;
-                x++;
+                //System.out.println("size has gotten too large.");
+                //size = 1;
+                break;
             }
         }
+        System.out.println("done.");
         return wordsThatMatch;
     }
 
@@ -147,32 +158,62 @@ public class SpellChecker
 
     public ArrayList<String> wordsContaining(String part)
     {
-        ArrayList<String> datWords = new ArrayList<String>();
-        int x = 0;
+        //Old way:
+        //         ArrayList<String> datWords = new ArrayList<String>();
+        //         int x = 0;
+        //         for (int i = 0; i < words.size(); i++)
+        //         {
+        //             x = 0;
+        //             if (x > part.length())
+        //             {
+        //                 break;
+        //             }
+        //             else
+        //             {
+        //                 if (words.get(i).length() >= part.length() && words.get(i).substring(0, part.length()).equals(part))
+        //                 {
+        //                     datWords.add(words.get(i));
+        //                 }
+        //                 while (i < x)
+        //                 {
+        //                     if (words.get(i).length() >= part.length() && words.get(i).substring(x, part.length()).equals(part))
+        //                     {
+        //                         datWords.add(words.get(i));
+        //                     }
+        //                 }
+        //                 x++;
+        //             }
+        //         }
+        //         return datWords;
+        //         
+        //New Way:
+        ArrayList<String> wordsThatMatch = new ArrayList<String>();
+        //part = part.toLowerCase();
+        if (!(isKnownWord(part)))
+        {
+            return wordsThatMatch; //0 items in the ArrayList.
+        }
+        int size = part.length();
+        int count  = 0;
         for (int i = 0; i < words.size(); i++)
         {
-            x = 0;
-            if (x > part.length())
-            {
-                break;
+            if (isPalindrome(words.get(i)) && isPalindrome(part))
+            {                  
+                wordsThatMatch.add(words.get(i));
             }
-            else
+            for (int j = 0; j < size; j++)
             {
-                if (words.get(i).length() >= part.length() && words.get(i).substring(0, part.length()).equals(part))
+                if (words.get(i).indexOf(part.substring(j, j + 1)) == -1)
                 {
-                    datWords.add(words.get(i));
+                    break;
                 }
-                while (i < x)
+                else if (j == (size - 1))
                 {
-                    if (words.get(i).length() >= part.length() && words.get(i).substring(x, part.length()).equals(part))
-                    {
-                        datWords.add(words.get(i));
-                    }
+                    wordsThatMatch.add(words.get(i));
                 }
-                x++;
             }
         }
-        return datWords;
+        return wordsThatMatch;
     }
 
     public boolean remove(String word)
