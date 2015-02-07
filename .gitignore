@@ -50,6 +50,9 @@ Temporary Items
 *.ctxt
 *.bluej
 
+# Eclipse
+*.project
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
