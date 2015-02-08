@@ -82,40 +82,170 @@ public class SpellChecker
         word = word.toLowerCase();
         if (!(isKnownWord(word)))
         {
-            //System.out.println("no words.");
             return wordsThatMatch; //0 items in the ArrayList.
         }
         int size = word.length();
         int count  = 0;
+        String wordThatIsBeingChecked = "";
+        boolean paramWordIsAPalindrome = isPalindrome(word);
         for (int i = 0; i < words.size(); i++)
         {
-            if (words.get(i).length() == size)
-            {
-                if (isPalindrome(words.get(i)) && isPalindrome(word))
+            wordThatIsBeingChecked = words.get(i).toLowerCase();
+            if (wordThatIsBeingChecked.length() == size)
+            {                
+                if (isPalindrome(wordThatIsBeingChecked) && paramWordIsAPalindrome)
                 {                  
-                    wordsThatMatch.add(words.get(i));
-                }
-                for (int j = 0; j < size; j++)
-                {
-                    if (words.get(i).indexOf(word.substring(j, j + 1)) == -1)
+                    for (int j = 0; j < size; j++)
                     {
-                        break;
+                        if (wordThatIsBeingChecked.indexOf(word.substring(j, j + 1)) == -1)
+                        {
+                            break;
+                        }
+                        else if (j == (size - 1))
+                        {
+                            if (!wordsThatMatch.contains(wordThatIsBeingChecked))
+                            {
+                                wordsThatMatch.add(wordThatIsBeingChecked);
+                                count++;
+                                System.out.println("(Line 111): The word " + wordThatIsBeingChecked + " will be added." + " The number of words found so far is now " + count + ".");
+                            }
+                            break; //done, so get next word
+                        }
                     }
-                    else if (j == (size - 1))
+                }
+                for (int k = 0; k < size; k++)
+                {
+                    if (paramWordIsAPalindrome)
                     {
-                        wordsThatMatch.add(words.get(i));
-                        count++;
-                        System.out.println("The word " + words.get(i) + " will be added." + " The number of words found so far is now " + count + ".");
+                        if (word.indexOf(wordThatIsBeingChecked.substring(k, k + 1)) == -1)
+                        {
+                            break; //stop the loop for checking in word, and get a new word
+                        }
+                        else if (k == (size - 1))
+                        {
+                            if (!wordsThatMatch.contains(wordThatIsBeingChecked))
+                            {
+                                wordsThatMatch.add(wordThatIsBeingChecked);
+                                count++;
+                                System.out.println("(Line 129): The word " + wordThatIsBeingChecked + " will be added." + " The number of words found so far is now " + count + ".");
+                            }
+                            break; //done, so get next word
+                        }
+                    }
+                    else if (!(paramWordIsAPalindrome))
+                    {
+                        if (wordThatIsBeingChecked.indexOf(word.substring(k, k + 1)) == -1)
+                        {
+                            break; //stop the loop for checking in word, and get a new word
+                        }
+                        else if (k == (size - 1))
+                        {
+                            if (!wordsThatMatch.contains(wordThatIsBeingChecked))
+                            {
+                                wordsThatMatch.add(wordThatIsBeingChecked);
+                                count++;
+                                System.out.println("(Line 129): The word " + wordThatIsBeingChecked + " will be added." + " The number of words found so far is now " + count + ".");
+                            }
+                            break; //done, so get next word
+                        }
                     }
                 }
             }
             else
             {
-                continue;
+                continue; //the size of words.get(i) != word, so get the next word.
             }
         }
         System.out.println();
         return wordsThatMatch;
+        //         
+        //         Other Way (not working):
+        //         public ArrayList<String> anagrams(String word)
+        //     {
+        //         ArrayList<String> wordsThatMatch = new ArrayList<String>();
+        //         word = word.toLowerCase();
+        //         if (!(isKnownWord(word)))
+        //         {
+        //             return wordsThatMatch; //0 items in the ArrayList.
+        //         }
+        //         int size = word.length();
+        //         int count  = 0;
+        //         String wordThatIsBeingChecked = "";
+        //         boolean paramWordIsAPalindrome = isPalindrome(word);
+        //         for (int i = 0; i < words.size(); i++)
+        //         {
+        //             wordThatIsBeingChecked = words.get(i).toLowerCase();
+        //             if (wordThatIsBeingChecked.length() == size)
+        //             {                
+        //                 if (isPalindrome(wordThatIsBeingChecked) && paramWordIsAPalindrome)
+        //                 {                  
+        //                     for (int j = 0; j < size; j++)
+        //                     {
+        //                         if (wordThatIsBeingChecked.indexOf(word.substring(j, j + 1)) == -1)
+        //                         {
+        //                             break;
+        //                         }
+        //                         else if (j == (size - 1))
+        //                         {
+        //                             if (!wordsThatMatch.contains(wordThatIsBeingChecked))
+        //                             {
+        //                                 wordsThatMatch.add(wordThatIsBeingChecked);
+        //                                 word = word.replaceFirst(word.substring(j, j + 1), "0");
+        //                                 count++;
+        //                                 System.out.println("(Line 195): The word " + wordThatIsBeingChecked + " will be added." + " The number of words found so far is now " + count + ".");
+        //                             }
+        //                             break; //done, so get next word
+        //                         }
+        //                     }
+        //                 }
+        //                 for (int k = 0; k < size; k++)
+        //                 {
+        //                     if (paramWordIsAPalindrome)
+        //                     {
+        //                         if (word.indexOf(wordThatIsBeingChecked.substring(k, k + 1)) == -1)
+        //                         {
+        //                             break; //stop the loop for checking in word, and get a new word
+        //                         }
+        //                         else if (k == (size - 1))
+        //                         {
+        //                             if (!wordsThatMatch.contains(wordThatIsBeingChecked))
+        //                             {
+        //                                 wordsThatMatch.add(wordThatIsBeingChecked);
+        //                                 word = word.replaceFirst(word.substring(k, k + 1), "0");
+        //                                 count++;
+        //                                 System.out.println("(Line 216): The word " + wordThatIsBeingChecked + " will be added." + " The number of words found so far is now " + count + ".");
+        //                             }
+        //                             break; //done, so get next word
+        //                         }
+        //                     }
+        //                     else if (!(paramWordIsAPalindrome))
+        //                     {
+        //                         if (wordThatIsBeingChecked.indexOf(word.substring(k, k + 1)) == -1)
+        //                         {
+        //                             break; //stop the loop for checking in word, and get a new word
+        //                         }
+        //                         else if (k == (size - 1))
+        //                         {
+        //                             if (!wordsThatMatch.contains(wordThatIsBeingChecked))
+        //                             {
+        //                                 wordsThatMatch.add(wordThatIsBeingChecked);
+        //                                 word = word.replaceFirst(word.substring(k, k + 1), "0");
+        //                                 count++;
+        //                                 System.out.println("(Line 234): The word " + wordThatIsBeingChecked + " will be added." + " The number of words found so far is now " + count + ".");
+        //                             }
+        //                             break; //done, so get next word
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //             else
+        //             {
+        //                 continue; //the size of words.get(i) != word, so get the next word.
+        //             }
+        //         }
+        //         System.out.println();
+        //         return wordsThatMatch;
+        //     }
     }
 
     public void insert(String word)
