@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class Pacman here.
+ * Write a description of class PacmanGame here.
  * 
  * @author (Adithya Sairamachandran) 
  * @version (a version number or a date)
