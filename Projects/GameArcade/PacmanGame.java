@@ -10,7 +10,7 @@ public class PacmanGame extends PCGame
     // instance variables - replace the example below with your own
 
     /**
-     * Constructor for objects of class Pinball
+     * Constructor for objects of class PacmanGame
      */
     public PacmanGame()
     {
