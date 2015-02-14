@@ -7,6 +7,4 @@ all he/she needs to know. The comments should usually include at least:
 PROJECT TITLE: GameArcade
 PURPOSE OF PROJECT: Personal Project
 VERSION or DATE: 1.0
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+AUTHORS: Adithya Sairamachandran
