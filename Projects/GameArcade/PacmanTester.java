@@ -8,11 +8,8 @@
 import java.util.*;
 public class PacmanTester
 {
-    public static void main(String[] args)
+    public static void run(String playerName)
     {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter your name.");
-        String playerName = scan.nextLine();
         PacmanGame theGame = new PacmanGame();
         theGame.setPlayerName(playerName);
         theGame.setTheGamesName();

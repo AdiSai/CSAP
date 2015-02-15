@@ -8,11 +8,8 @@
 import java.util.*;
 public class PinballTester
 {
-    public static void main(String[] args)
+    public static void run(String playerName)
     {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter your name.");
-        String playerName = scan.nextLine();
         PinballGame theGame = new PinballGame();
         theGame.setPlayerName(playerName);
         theGame.setTheGamesName();
