@@ -22,7 +22,7 @@ public class SpellCheckTester
         while (true) 
         {
             int choice = printMenu();
-            if (choice == 10)
+            if (choice == 11)
             {
                 spellCk.save();
                 break;
@@ -47,6 +47,8 @@ public class SpellCheckTester
                 break;
                 case 9: showAnas();
                 break;
+                case 10: checkWordForReptChar();
+                break;
                 default: System.out.println("Huh?");
             }
         }
@@ -65,7 +67,8 @@ public class SpellCheckTester
         System.out.println("7. Remove a word from the dictionary.");
         System.out.println("8. Check if a word or phrase is a palindrome.");
         System.out.println("9. Search for all anagrams of a word.");
-        System.out.println("10. Exit.");
+        System.out.println("10. Check if a word has repeated charcters in it.");
+        System.out.println("11. Exit.");
         int ch = picker.nextInt();
         picker.nextLine(); // flush the buffer
         return ch;
@@ -83,6 +86,34 @@ public class SpellCheckTester
             System.out.println("\nThat word IS NOT in the dictionary\n");
     }
 
+    public static void checkWordForReptChar()
+    {
+    	System.out.print("Enter the word to check: ");
+    	String wrd = picker.nextLine();
+    	if (wrd.length() > 0)
+    	{
+    		if (!(spellCk.isKnownWord(wrd)))
+        	{
+    			if (spellCk.wordHasRepeatedCharacters(wrd))
+    			{
+    				System.out.println("\nThis word is not in the dictionary, but it HAS repeated charcters.\n");
+    			}
+    			else
+    			{
+    				System.out.println("\nThis word is not in the dictionary, and it does NOT HAVE any repeated charcters.\n");
+    			}
+        	}
+    		else if (spellCk.wordHasRepeatedCharacters(wrd))
+    		{
+    			System.out.println("\nThis word HAS repeated charcters.\n");
+    		}
+    		else
+    		{
+    			System.out.println("\nThis word does NOT HAVE any repeated charcters.\n");
+    		}
+    	}
+    }
+    
     public static void checkWords()
     {
         System.out.print("Enter words to check one at a time. "
