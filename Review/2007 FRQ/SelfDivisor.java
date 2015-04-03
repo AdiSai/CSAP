@@ -14,16 +14,17 @@ public class SelfDivisor
         //insert things into an array:
         for (int i = 0; i < temp.length(); i++)
         {
-            numArray[i] = temp.charAt(i) - '0';
+        	numArray[i] = temp.charAt(i) - '0';
+        	System.out.println("Added:" +  numArray[i]);
         }
         //check array:
         for (int j = 0; j < numArray.length; j++)
         {
-            if (numArray[j] == 0)
-            {
-                break;
-            }
-            else if (!(number % numArray[j] == 0))
+        	if (numArray[j] == 0)
+        	{
+        		return false;
+        	}
+        	else if (!(number % numArray[j] == 0))
             {
                 return false;
             }
@@ -41,11 +42,20 @@ public class SelfDivisor
      */
     public static int[] firstNumSelfDivisors(int start, int num)
     {
-        int[] values = new int[num];
-        for (int i = 0; i < values.length; i++)
+    	int[] values = new int[num];
+    	int i = 0;
+        while (true)
         {
+            if (i > (num - 1)) //break when > than the last index of array size (num)
+            {
+            	break;
+            }
+        	if (isSelfDivisor(start)) 
+            {
+            	values[i] = start;
+            	i++;
+            }
             start++;
-            if (isSelfDivisor(start)) {  values[i] = start; }
         }
         return values;
     }
@@ -54,11 +64,11 @@ public class SelfDivisor
 
     public static void main (String[] args)
     {
-        System.out.println("128: " + isSelfDivisor(128));
+    	System.out.println("128: " + isSelfDivisor(128));
         System.out.println("26: " + isSelfDivisor(26));
         System.out.println("120: " + isSelfDivisor(120));
         System.out.println("102: " + isSelfDivisor(102));
-        for (int n : firstNumSelfDivisors(10, 3))
+    	for (int n : firstNumSelfDivisors(10, 3))
             System.out.print(n + " ");
         System.out.println();
     }

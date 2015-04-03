@@ -11,6 +11,25 @@ public class GameDriver
    */
   public void play()
   {
-  
+	  System.out.println(state);
+	  Player curr = new Player("");
+	  curr = state.getCurrentPlayer();
+	  String nextMove = curr.getNextMove(state);
+	  state.makeMove(nextMove);
+	  if (state.isGameOver())
+	  {
+		  if (!(state.getWinner() == null))
+		  {
+			  System.out.println(state.getWinner() + " won!");
+		  }
+		  else
+		  {
+			  System.out.println("Game ends in a draw.");
+		  }
+	  }
+	  else
+	  {
+		  play();
+	  }
   }
 }

@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
-public class MyGameState  implements GameState
+public class MyGameState implements GameState
 {
- // private RandomPlayer randy;
+  private RandomPlayer randy;
   private ArrayList<String> moves;
 
   public MyGameState()
   {
- //   randy = new RandomPlayer("Randy");
+    randy = new RandomPlayer("Randy");
     moves = new ArrayList<String>();
     moves.add("Move1");
     moves.add("Move2");
@@ -27,7 +27,7 @@ public class MyGameState  implements GameState
    */
   public Player getWinner()
   {
-   /* return randy; */ return null;
+   /* return randy; (for test) */ return randy;
   }
 
   /** Precondition: isGameOver() returns false
@@ -35,7 +35,7 @@ public class MyGameState  implements GameState
    */
   public Player getCurrentPlayer()
   {
- /*   return randy; */ return null;
+ /*   return randy; (for test) */ return randy;
   }
 
   /** @return a list of valid moves for the current player;

@@ -21,9 +21,19 @@ public class StudentAnswerSheet
    */
   public double getScore(ArrayList<String> key)
   {
-    
-
-    return 0.0;
+	  double score = 0.0;
+	  for (int i = 0; i < answers.size(); i++)
+	  {
+		  if (answers.get(i).equals(key.get(i)))
+		  {
+			  score+=1;
+		  }
+		  else
+		  {
+			  score-=0.25;
+		  }
+	  }
+	  return score;
   }
 
   /****************/

@@ -22,8 +22,17 @@ public class TestResults
    */
   public String highestScoringStudent(ArrayList<String> key)
   {
-    
-    return null;
+	  double largestScore = 0;
+	  String highestScoringStudentName = "";
+	  for (StudentAnswerSheet s : sheets)
+	  {
+		  if (s.getScore(key) > largestScore)
+		  {
+			  largestScore = s.getScore(key);
+			  highestScoringStudentName = s.getName();
+		  }
+	  }
+	  return highestScoringStudentName;
   }
 
 
