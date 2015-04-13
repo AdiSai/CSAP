@@ -28,7 +28,7 @@ public class StudentAnswerSheet
 		  {
 			  score+=1;
 		  }
-		  else
+		  else if (!(answers.get(i).equals("?")))
 		  {
 			  score-=0.25;
 		  }
