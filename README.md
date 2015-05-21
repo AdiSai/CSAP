@@ -1,7 +1,7 @@
 Computer Science AP
 ===
 
-Various Computer Science AP Projects during the 2015 school year (Java).
+Various Computer Science AP Projects during the 2015 school year.
 
 Licenced under GPL Version 3.
 
