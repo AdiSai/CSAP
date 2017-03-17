@@ -1,4 +1,4 @@
-Computer Science AP
+AP Computer Science
 ===
 
 Various Computer Science AP Projects during the 2015 school year.
